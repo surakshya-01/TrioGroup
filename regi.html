@@ -1,0 +1,1313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register as Donor - LifeBlood Connect</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-red: #c62828;
+            --dark-red: #8e0000;
+            --light-red: #ffebee;
+            --accent: #1565c0;
+            --text-dark: #333;
+            --text-light: #666;
+            --white: #ffffff;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f9f9f9;
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        /* Navbar */
+        .navbar {
+            background: var(--primary-red);
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .logo i {
+            margin-right: 10px;
+            font-size: 1.8rem;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 25px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            padding: 8px 15px;
+            border-radius: 5px;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .nav-links a.active {
+            background: white;
+            color: var(--primary-red);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Registration Container */
+        .registration-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .registration-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .registration-header h1 {
+            font-size: 2.8rem;
+            color: var(--dark-red);
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .registration-header h1:after {
+            content: '';
+            position: absolute;
+            width: 100px;
+            height: 4px;
+            background: var(--primary-red);
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .registration-header p {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Registration Form */
+        .registration-form-container {
+            background: white;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            margin-bottom: 60px;
+        }
+
+        .form-progress {
+            display: flex;
+            background: var(--light-red);
+            padding: 20px;
+        }
+
+        .progress-step {
+            flex: 1;
+            text-align: center;
+            padding: 15px;
+            position: relative;
+            font-weight: 600;
+            color: var(--text-light);
+        }
+
+        .progress-step.active {
+            color: var(--primary-red);
+        }
+
+        .progress-step .step-number {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background: white;
+            border-radius: 50%;
+            line-height: 40px;
+            text-align: center;
+            margin-right: 10px;
+            border: 2px solid #ddd;
+        }
+
+        .progress-step.active .step-number {
+            background: var(--primary-red);
+            color: white;
+            border-color: var(--primary-red);
+        }
+
+        .progress-step:not(:last-child):after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background: #ddd;
+            top: 50%;
+            right: -50%;
+            transform: translateY(-50%);
+            z-index: 1;
+        }
+
+        .form-content {
+            padding: 40px;
+        }
+
+        .form-section {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .form-section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            color: var(--dark-red);
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--light-red);
+        }
+
+        .form-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 25px;
+            margin-bottom: 25px;
+        }
+
+        .form-group {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .required:after {
+            content: ' *';
+            color: var(--primary-red);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary-red);
+            box-shadow: 0 0 0 3px rgba(198, 40, 40, 0.1);
+        }
+
+        .form-control.error {
+            border-color: #ff4444;
+        }
+
+        .error-message {
+            color: #ff4444;
+            font-size: 0.85rem;
+            margin-top: 5px;
+            display: none;
+        }
+
+        .error-message.show {
+            display: block;
+        }
+
+        .radio-group {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .radio-option {
+            display: flex;
+            align-items: center;
+        }
+
+        .radio-option input[type="radio"] {
+            margin-right: 8px;
+            width: 18px;
+            height: 18px;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            margin-right: 10px;
+            margin-top: 5px;
+            width: 18px;
+            height: 18px;
+        }
+
+        /* Blood Group Selector */
+        .blood-group-selector {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 10px;
+        }
+
+        .blood-group-option {
+            width: 70px;
+            height: 70px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        .blood-group-option:hover {
+            border-color: var(--primary-red);
+            transform: translateY(-3px);
+        }
+
+        .blood-group-option.selected {
+            background: var(--light-red);
+            border-color: var(--primary-red);
+            color: var(--primary-red);
+            box-shadow: 0 5px 15px rgba(198, 40, 40, 0.1);
+        }
+
+        .blood-group-option .blood-type {
+            font-size: 1.5rem;
+        }
+
+        .blood-group-option .rh-factor {
+            font-size: 0.9rem;
+            margin-top: 3px;
+        }
+
+        /* Nepal Cities Select */
+        .cities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 10px;
+            max-height: 250px;
+            overflow-y: auto;
+            padding: 10px;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+        }
+
+        .city-option {
+            padding: 12px;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: var(--transition);
+            text-align: center;
+        }
+
+        .city-option:hover {
+            background: #f5f5f5;
+        }
+
+        .city-option.selected {
+            background: var(--light-red);
+            border-color: var(--primary-red);
+            color: var(--primary-red);
+            font-weight: 600;
+        }
+
+        /* Emergency Contact */
+        .emergency-contact {
+            background: #f9f9f9;
+            padding: 25px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+
+        /* Form Navigation */
+        .form-navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 40px;
+            padding-top: 25px;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .btn {
+            padding: 14px 30px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 150px;
+        }
+
+        .btn-primary {
+            background: var(--primary-red);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--dark-red);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow);
+        }
+
+        .btn-secondary {
+            background: #f0f0f0;
+            color: var(--text-dark);
+        }
+
+        .btn-secondary:hover {
+            background: #e0e0e0;
+            transform: translateY(-3px);
+        }
+
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none !important;
+        }
+
+        .btn i {
+            margin-right: 8px;
+        }
+
+        /* Success Message */
+        .success-message {
+            text-align: center;
+            padding: 60px 20px;
+            display: none;
+        }
+
+        .success-icon {
+            font-size: 5rem;
+            color: #4CAF50;
+            margin-bottom: 30px;
+        }
+
+        .success-message h2 {
+            font-size: 2.5rem;
+            color: var(--dark-red);
+            margin-bottom: 20px;
+        }
+
+        .success-message p {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            max-width: 700px;
+            margin: 0 auto 40px;
+        }
+
+        /* Footer */
+        footer {
+            background: #222;
+            color: white;
+            padding: 60px 5% 30px;
+            margin-top: 40px;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+
+        .footer-column {
+            flex: 1;
+            min-width: 250px;
+            margin-bottom: 30px;
+        }
+
+        .footer-column h3 {
+            color: white;
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-column h3:after {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 3px;
+            background: var(--primary-red);
+            bottom: 0;
+            left: 0;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #bbb;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: white;
+            padding-left: 5px;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #444;
+            color: #bbb;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background: var(--dark-red);
+                flex-direction: column;
+                padding: 20px;
+                text-align: center;
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .nav-links li {
+                margin: 10px 0;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .progress-step:not(:last-child):after {
+                display: none;
+            }
+            
+            .form-progress {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .registration-header h1 {
+                font-size: 2.2rem;
+            }
+            
+            .form-content {
+                padding: 25px;
+            }
+            
+            .form-row {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .form-group {
+                min-width: 100%;
+            }
+            
+            .form-navigation {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .btn {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .registration-header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .section-title {
+                font-size: 1.5rem;
+            }
+            
+            .blood-group-option {
+                width: 60px;
+                height: 60px;
+            }
+            
+            .cities-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- NAVIGATION BAR -->
+    <nav class="navbar">
+        <a href="index.html" class="logo">
+            <i class="fas fa-tint"></i>
+            <span>LifeBlood Connect</span>
+        </a>
+        
+        <button class="mobile-menu-btn" id="mobileMenuBtn">
+            <i class="fas fa-bars"></i>
+        </button>
+        
+        <ul class="nav-links" id="navLinks">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="register.html" class="active">Register Donor</a></li>
+            <li><a href="donorlist.html">Donor List</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="#login" class="btn-secondary" style="padding: 8px 20px; margin-left: 10px;">Login</a></li>
+        </ul>
+    </nav>
+
+    <!-- REGISTRATION CONTAINER -->
+    <div class="registration-container">
+        <div class="registration-header">
+            <h1>Become a Lifesaver</h1>
+            <p>Register as a blood donor and help save lives in your community. Your single donation can save up to 3 lives.</p>
+        </div>
+
+        <div class="registration-form-container">
+            <!-- Progress Steps -->
+            <div class="form-progress">
+                <div class="progress-step active" id="step1">
+                    <span class="step-number">1</span>
+                    <span class="step-text">Personal Info</span>
+                </div>
+                <div class="progress-step" id="step2">
+                    <span class="step-number">2</span>
+                    <span class="step-text">Health Details</span>
+                </div>
+                <div class="progress-step" id="step3">
+                    <span class="step-number">3</span>
+                    <span class="step-text">Contact & Location</span>
+                </div>
+                <div class="progress-step" id="step4">
+                    <span class="step-number">4</span>
+                    <span class="step-text">Confirmation</span>
+                </div>
+            </div>
+
+            <!-- Form Content -->
+            <div class="form-content">
+                <!-- Success Message (Hidden by default) -->
+                <div class="success-message" id="successMessage">
+                    <div class="success-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <h2>Registration Successful!</h2>
+                    <p>Thank you for registering as a blood donor. Your information has been saved. Our team will contact you within 24 hours for verification. You are now part of a community that saves lives every day.</p>
+                    <a href="donorlist.html" class="btn btn-primary">View Donor List</a>
+                    <a href="index.html" class="btn btn-secondary" style="margin-left: 15px;">Back to Home</a>
+                </div>
+
+                <!-- Form Sections -->
+                <form id="donorRegistrationForm">
+                    <!-- Section 1: Personal Information -->
+                    <div class="form-section active" id="section1">
+                        <h2 class="section-title">Personal Information</h2>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label required" for="fullName">Full Name</label>
+                                <input type="text" id="fullName" class="form-control" placeholder="Enter your full name">
+                                <div class="error-message" id="nameError">Please enter your full name</div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label required" for="email">Email Address</label>
+                                <input type="email" id="email" class="form-control" placeholder="example@email.com">
+                                <div class="error-message" id="emailError">Please enter a valid email address</div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label required" for="phone">Phone Number</label>
+                                <input type="tel" id="phone" class="form-control" placeholder="98XXXXXXXX">
+                                <div class="error-message" id="phoneError">Please enter a valid phone number</div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label required" for="age">Age</label>
+                                <input type="number" id="age" class="form-control" min="18" max="60" placeholder="18-60">
+                                <div class="error-message" id="ageError">Age must be between 18 and 60</div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label required">Gender</label>
+                                <div class="radio-group">
+                                    <div class="radio-option">
+                                        <input type="radio" id="male" name="gender" value="male">
+                                        <label for="male">Male</label>
+                                    </div>
+                                    <div class="radio-option">
+                                        <input type="radio" id="female" name="gender" value="female">
+                                        <label for="female">Female</label>
+                                    </div>
+                                    <div class="radio-option">
+                                        <input type="radio" id="other" name="gender" value="other">
+                                        <label for="other">Other</label>
+                                    </div>
+                                </div>
+                                <div class="error-message" id="genderError">Please select your gender</div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-navigation">
+                            <button type="button" class="btn btn-secondary" disabled>Previous</button>
+                            <button type="button" class="btn btn-primary" id="nextToSection2">Next</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Section 2: Health Details -->
+                    <div class="form-section" id="section2">
+                        <h2 class="section-title">Health Details</h2>
+                        
+                        <div class="form-group">
+                            <label class="form-label required">Blood Group</label>
+                            <div class="blood-group-selector">
+                                <div class="blood-group-option" data-type="A+">
+                                    <div class="blood-type">A</div>
+                                    <div class="rh-factor">+</div>
+                                </div>
+                                <div class="blood-group-option" data-type="A-">
+                                    <div class="blood-type">A</div>
+                                    <div class="rh-factor">-</div>
+                                </div>
+                                <div class="blood-group-option" data-type="B+">
+                                    <div class="blood-type">B</div>
+                                    <div class="rh-factor">+</div>
+                                </div>
+                                <div class="blood-group-option" data-type="B-">
+                                    <div class="blood-type">B</div>
+                                    <div class="rh-factor">-</div>
+                                </div>
+                                <div class="blood-group-option" data-type="O+">
+                                    <div class="blood-type">O</div>
+                                    <div class="rh-factor">+</div>
+                                </div>
+                                <div class="blood-group-option" data-type="O-">
+                                    <div class="blood-type">O</div>
+                                    <div class="rh-factor">-</div>
+                                </div>
+                                <div class="blood-group-option" data-type="AB+">
+                                    <div class="blood-type">AB</div>
+                                    <div class="rh-factor">+</div>
+                                </div>
+                                <div class="blood-group-option" data-type="AB-">
+                                    <div class="blood-type">AB</div>
+                                    <div class="rh-factor">-</div>
+                                </div>
+                            </div>
+                            <input type="hidden" id="bloodGroup">
+                            <div class="error-message" id="bloodGroupError">Please select your blood group</div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label required" for="weight">Weight (kg)</label>
+                                <input type="number" id="weight" class="form-control" min="45" placeholder="Minimum 45 kg">
+                                <div class="error-message" id="weightError">Weight must be at least 45 kg</div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label required" for="lastDonation">Last Donation Date</label>
+                                <input type="date" id="lastDonation" class="form-control">
+                                <div class="error-message" id="lastDonationError">Please enter last donation date</div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label required">Any Health Conditions?</label>
+                            <div class="radio-group">
+                                <div class="radio-option">
+                                    <input type="radio" id="conditionYes" name="healthCondition" value="yes">
+                                    <label for="conditionYes">Yes</label>
+                                </div>
+                                <div class="radio-option">
+                                    <input type="radio" id="conditionNo" name="healthCondition" value="no" checked>
+                                    <label for="conditionNo">No</label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group" id="conditionDetails" style="display: none;">
+                            <label class="form-label" for="conditionDescription">Please describe</label>
+                            <textarea id="conditionDescription" class="form-control" rows="3" placeholder="Describe any health conditions or medications"></textarea>
+                        </div>
+                        
+                        <div class="form-navigation">
+                            <button type="button" class="btn btn-secondary" id="prevToSection1">Previous</button>
+                            <button type="button" class="btn btn-primary" id="nextToSection3">Next</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Section 3: Contact & Location -->
+                    <div class="form-section" id="section3">
+                        <h2 class="section-title">Contact & Location</h2>
+                        
+                        <div class="form-group">
+                            <label class="form-label required" for="address">Full Address</label>
+                            <textarea id="address" class="form-control" rows="3" placeholder="Street address, Ward number"></textarea>
+                            <div class="error-message" id="addressError">Please enter your address</div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label required">City</label>
+                            <div class="cities-grid">
+                                <!-- Nepal Cities -->
+                                <div class="city-option" data-city="Kathmandu">Kathmandu</div>
+                                <div class="city-option" data-city="Pokhara">Pokhara</div>
+                                <div class="city-option" data-city="Lalitpur">Lalitpur</div>
+                                <div class="city-option" data-city="Bhaktapur">Bhaktapur</div>
+                                <div class="city-option" data-city="Biratnagar">Biratnagar</div>
+                                <div class="city-option" data-city="Birgunj">Birgunj</div>
+                                <div class="city-option" data-city="Butwal">Butwal</div>
+                                <div class="city-option" data-city="Dharan">Dharan</div>
+                                <div class="city-option" data-city="Hetauda">Hetauda</div>
+                                <div class="city-option" data-city="Itahari">Itahari</div>
+                                <div class="city-option" data-city="Janakpur">Janakpur</div>
+                                <div class="city-option" data-city="Nepalgunj">Nepalgunj</div>
+                            </div>
+                            <input type="hidden" id="city">
+                            <div class="error-message" id="cityError">Please select your city</div>
+                        </div>
+                        
+                        <!-- Emergency Contact -->
+                        <div class="emergency-contact">
+                            <h3 style="color: var(--dark-red); margin-bottom: 20px;">Emergency Contact Person</h3>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label class="form-label required" for="emergencyName">Emergency Contact Name</label>
+                                    <input type="text" id="emergencyName" class="form-control" placeholder="Full name of contact person">
+                                    <div class="error-message" id="emergencyNameError">Please enter emergency contact name</div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label class="form-label required" for="emergencyPhone">Emergency Contact Phone</label>
+                                    <input type="tel" id="emergencyPhone" class="form-control" placeholder="98XXXXXXXX">
+                                    <div class="error-message" id="emergencyPhoneError">Please enter emergency contact phone</div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label" for="emergencyRelation">Relationship</label>
+                                <input type="text" id="emergencyRelation" class="form-control" placeholder="Father, Mother, Spouse, etc.">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group" style="margin-top: 30px;">
+                            <div class="checkbox-group">
+                                <input type="checkbox" id="agreeTerms" required>
+                                <label for="agreeTerms">I agree to the <a href="#" style="color: var(--primary-red);">Terms & Conditions</a> and confirm that all information provided is accurate to the best of my knowledge.</label>
+                            </div>
+                            <div class="error-message" id="termsError">You must agree to the terms and conditions</div>
+                        </div>
+                        
+                        <div class="form-navigation">
+                            <button type="button" class="btn btn-secondary" id="prevToSection2">Previous</button>
+                            <button type="button" class="btn btn-primary" id="nextToSection4">Next</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Section 4: Confirmation -->
+                    <div class="form-section" id="section4">
+                        <h2 class="section-title">Review & Confirm</h2>
+                        
+                        <div style="background: #f9f9f9; padding: 25px; border-radius: 10px; margin-bottom: 30px;">
+                            <h3 style="color: var(--dark-red); margin-bottom: 20px;">Please review your information</h3>
+                            
+                            <div id="reviewSummary">
+                                <!-- Data will be populated here by JavaScript -->
+                            </div>
+                        </div>
+                        
+                        <div class="form-navigation">
+                            <button type="button" class="btn btn-secondary" id="prevToSection3">Previous</button>
+                            <button type="submit" class="btn btn-primary" id="submitForm">
+                                <i class="fas fa-check"></i> Submit Registration
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>LifeBlood Connect</h3>
+                <p>A platform dedicated to connecting blood donors with recipients, saving lives one donation at a time.</p>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="register.html">Register as Donor</a></li>
+                    <li><a href="donorlist.html">Find a Donor</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Contact Info</h3>
+                <ul class="footer-links">
+                    <li><i class="fas fa-map-marker-alt"></i> Kathmandu, Nepal</li>
+                    <li><i class="fas fa-phone"></i> +977 1-XXXXXXX</li>
+                    <li><i class="fas fa-envelope"></i> info@lifebloodconnect.org</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            <p>&copy; 2023 LifeBlood Connect. All rights reserved. | Designed with <i class="fas fa-heart" style="color: var(--primary-red);"></i> to save lives</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navLinks = document.getElementById('navLinks');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            mobileMenuBtn.innerHTML = navLinks.classList.contains('active') 
+                ? '<i class="fas fa-times"></i>' 
+                : '<i class="fas fa-bars"></i>';
+        });
+        
+        // Form Navigation Variables
+        const formSections = document.querySelectorAll('.form-section');
+        const progressSteps = document.querySelectorAll('.progress-step');
+        let currentSection = 0;
+        
+        // Blood Group Selection
+        const bloodGroupOptions = document.querySelectorAll('.blood-group-option');
+        const bloodGroupInput = document.getElementById('bloodGroup');
+        
+        bloodGroupOptions.forEach(option => {
+            option.addEventListener('click', () => {
+                // Remove selected class from all options
+                bloodGroupOptions.forEach(opt => opt.classList.remove('selected'));
+                
+                // Add selected class to clicked option
+                option.classList.add('selected');
+                
+                // Set the value to hidden input
+                bloodGroupInput.value = option.getAttribute('data-type');
+                
+                // Clear error if any
+                document.getElementById('bloodGroupError').classList.remove('show');
+            });
+        });
+        
+        // Nepal City Selection
+        const cityOptions = document.querySelectorAll('.city-option');
+        const cityInput = document.getElementById('city');
+        
+        cityOptions.forEach(option => {
+            option.addEventListener('click', () => {
+                // Remove selected class from all options
+                cityOptions.forEach(opt => opt.classList.remove('selected'));
+                
+                // Add selected class to clicked option
+                option.classList.add('selected');
+                
+                // Set the value to hidden input
+                cityInput.value = option.getAttribute('data-city');
+                
+                // Clear error if any
+                document.getElementById('cityError').classList.remove('show');
+            });
+        });
+        
+        // Health Condition Toggle
+        const healthConditionRadios = document.querySelectorAll('input[name="healthCondition"]');
+        const conditionDetails = document.getElementById('conditionDetails');
+        
+        healthConditionRadios.forEach(radio => {
+            radio.addEventListener('change', () => {
+                if (document.getElementById('conditionYes').checked) {
+                    conditionDetails.style.display = 'block';
+                } else {
+                    conditionDetails.style.display = 'none';
+                }
+            });
+        });
+        
+        // Form Navigation Functions
+        function showSection(sectionIndex) {
+            // Hide all sections
+            formSections.forEach(section => section.classList.remove('active'));
+            
+            // Show current section
+            formSections[sectionIndex].classList.add('active');
+            
+            // Update progress steps
+            progressSteps.forEach((step, index) => {
+                if (index <= sectionIndex) {
+                    step.classList.add('active');
+                } else {
+                    step.classList.remove('active');
+                }
+            });
+            
+            currentSection = sectionIndex;
+        }
+        
+        // Validation Functions
+        function validateSection1() {
+            let isValid = true;
+            
+            // Validate name
+            const name = document.getElementById('fullName').value.trim();
+            if (name === '') {
+                document.getElementById('nameError').classList.add('show');
+                document.getElementById('fullName').classList.add('error');
+                isValid = false;
+            } else {
+                document.getElementById('nameError').classList.remove('show');
+                document.getElementById('fullName').classList.remove('error');
+            }
+            
+            // Validate email
+            const email = document.getElementById('email').value.trim();
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                document.getElementById('emailError').classList.add('show');
+                document.getElementById('email').classList.add('error');
+                isValid = false;
+            } else {
+                document.getElementById('emailError').classList.remove('show');
+                document.getElementById('email').classList.remove('error');
+            }
+            
+            // Validate phone
+            const phone = document.getElementById('phone').value.trim();
+            const phoneRegex = /^[0-9]{10}$/;
+            if (!phoneRegex.test(phone)) {
+                document.getElementById('phoneError').classList.add('show');
+                document.getElementById('phone').classList.add('error');
+                isValid = false;
+            } else {
+                document.getElementById('phoneError').classList.remove('show');
+                document.getElementById('phone').classList.remove('error');
+            }
+            
+            // Validate age
+            const age = parseInt(document.getElementById('age').value);
+            if (age < 18 || age > 60 || isNaN(age)) {
+                document.getElementById('ageError').classList.add('show');
+                document.getElementById('age').classList.add('error');
+                isValid = false;
+            } else {
+                document.getElementById('ageError').classList.remove('show');
+                document.getElementById('age').classList.remove('error');
+            }
+            
+            // Validate gender
+            const genderSelected = document.querySelector('input[name="gender"]:checked');
+            if (!genderSelected) {
+                document.getElementById('genderError').classList.add('show');
+                isValid = false;
+            } else {
+                document.getElementById('genderError').classList.remove('show');
+            }
+            
+            return isValid;
+        }
+        
+        function validateSection2() {
+            let isValid = true;
+            
+            // Validate blood group
+            if (bloodGroupInput.value === '') {
+                document.getElementById('bloodGroupError').classList.add('show');
+                isValid = false;
+            } else {
+                document.getElementById('bloodGroupError').classList.remove('show');
+            }
+            
+            // Validate weight
+            const weight = parseInt(document.getElementById('weight').value);
+            if (weight < 45 || isNaN(weight)) {
+                document.getElementById('weightError').classList.add('show');
+                document.getElementById('weight').classList.add('error');
+                isValid = false;
+            } else {
+                document.getElementById('weightError').classList.remove('show');
+                document.getElementById('weight').classList.remove('error');
+            }
+            
+            // Validate last donation date
+            const lastDonation = document.getElementById('lastDonation').value;
+            if (lastDonation === '') {
+                document.getElementById('lastDonationError').classList.add('show');
+                document.getElementById('lastDonation').classList.add('error');
+                isValid = false;
+            } else {
+                document.getElementById('lastDonationError').classList.remove('show');
+                document.getElementById('lastDonation').classList.remove('error');
+            }
+            
+            return isValid;
+        }
+        
+        function validateSection3() {
+            let isValid = true;
+            
+            // Validate address
+            const address = document.getElementById('address').value.trim();
+            if (address === '') {
+                document.getElementById('addressError').classList.add('show');
+                document.getElementById('address').classList.add('error');
+                isValid = false;
+            } else {
+                document.getElementById('addressError').classList.remove('show');
+                document.getElementById('address').classList.remove('error');
+            }
+            
+            // Validate city
+            if (cityInput.value === '') {
+                document.getElementById('cityError').classList.add('show');
+                isValid = false;
+            } else {
+                document.getElementById('cityError').classList.remove('show');
+            }
+            
+            // Validate emergency contact name
+            const emergencyName = document.getElementById('emergencyName').value.trim();
+            if (emergencyName === '') {
+                document.getElementById('emergencyNameError').classList.add('show');
+                document.getElementById('emergencyName').classList.add('error');
+                isValid = false;
+            } else {
+                document.getElementById('emergencyNameError').classList.remove('show');
+                document.getElementById('emergencyName').classList.remove('error');
+            }
+            
+            // Validate emergency contact phone
+            const emergencyPhone = document.getElementById('emergencyPhone').value.trim();
+            const phoneRegex = /^[0-9]{10}$/;
+            if (!phoneRegex.test(emergencyPhone)) {
+                document.getElementById('emergencyPhoneError').classList.add('show');
+                document.getElementById('emergencyPhone').classList.add('error');
+                isValid = false;
+            } else {
+                document.getElementById('emergencyPhoneError').classList.remove('show');
+                document.getElementById('emergencyPhone').classList.remove('error');
+            }
+            
+            // Validate terms agreement
+            const agreeTerms = document.getElementById('agreeTerms').checked;
+            if (!agreeTerms) {
+                document.getElementById('termsError').classList.add('show');
+                isValid = false;
+            } else {
+                document.getElementById('termsError').classList.remove('show');
+            }
+            
+            return isValid;
+        }
+        
+        // Populate review summary
+        function populateReviewSummary() {
+            const summary = document.getElementById('reviewSummary');
+            
+            const formData = {
+                name: document.getElementById('fullName').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                age: document.getElementById('age').value,
+                gender: document.querySelector('input[name="gender"]:checked')?.value || 'Not specified',
+                bloodGroup: bloodGroupInput.value,
+                weight: document.getElementById('weight').value,
+                lastDonation: document.getElementById('lastDonation').value,
+                healthCondition: document.querySelector('input[name="healthCondition"]:checked')?.value || 'No',
+                conditionDescription: document.getElementById('conditionDescription').value,
+                address: document.getElementById('address').value,
+                city: cityInput.value,
+                emergencyName: document.getElementById('emergencyName').value,
+                emergencyPhone: document.getElementById('emergencyPhone').value,
+                emergencyRelation: document.getElementById('emergencyRelation').value
+            };
+            
+            let summaryHTML = `
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                    <div><strong>Full Name:</strong></div><div>${formData.name}</div>
+                    <div><strong>Email:</strong></div><div>${formData.email}</div>
+                    <div><strong>Phone:</strong></div><div>${formData.phone}</div>
+                    <div><strong>Age:</strong></div><div>${formData.age}</div>
+                    <div><strong>Gender:</strong></div><div>${formData.gender}</div>
+                    <div><strong>Blood Group:</strong></div><div>${formData.bloodGroup}</div>
+                    <div><strong>Weight:</strong></div><div>${formData.weight} kg</div>
+                    <div><strong>Last Donation:</strong></div><div>${formData.lastDonation}</div>
+                    <div><strong>Health Condition:</strong></div><div>${formData.healthCondition}</div>
+                    ${formData.healthCondition === 'yes' ? `<div><strong>Condition Details:</strong></div><div>${formData.conditionDescription}</div>` : ''}
+                    <div><strong>Address:</strong></div><div>${formData.address}</div>
+                    <div><strong>City:</strong></div><div>${formData.city}</div>
+                    <div><strong>Emergency Contact:</strong></div><div>${formData.emergencyName} (${formData.emergencyRelation})</div>
+                    <div><strong>Emergency Phone:</strong></div><div>${formData.emergencyPhone}</div>
+                </div>
+            `;
+            
+            summary.innerHTML = summaryHTML;
+        }
+        
+        // Navigation Button Event Listeners
+        document.getElementById('nextToSection2').addEventListener('click', () => {
+            if (validateSection1()) {
+                showSection(1);
+            }
+        });
+        
+        document.getElementById('prevToSection1').addEventListener('click', () => {
+            showSection(0);
+        });
+        
+        document.getElementById('nextToSection3').addEventListener('click', () => {
+            if (validateSection2()) {
+                showSection(2);
+            }
+        });
+        
+        document.getElementById('prevToSection2').addEventListener('click', () => {
+            showSection(1);
+        });
+        
+        document.getElementById('nextToSection4').addEventListener('click', () => {
+            if (validateSection3()) {
+                populateReviewSummary();
+                showSection(3);
+            }
+        });
+        
+        document.getElementById('prevToSection3').addEventListener('click', () => {
+            showSection(2);
+        });
+        
+        // Form Submission
+        document.getElementById('donorRegistrationForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Simulate form submission
+            const form = document.getElementById('donorRegistrationForm');
+            const successMessage = document.getElementById('successMessage');
+            
+            // Hide form and show success message
+            form.style.display = 'none';
+            successMessage.style.display = 'block';
+            
+            // In a real application, you would send the data to a server here
+            console.log('Form submitted with data:', {
+                name: document.getElementById('fullName').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                age: document.getElementById('age').value,
+                gender: document.querySelector('input[name="gender"]:checked')?.value,
+                bloodGroup: bloodGroupInput.value,
+                weight: document.getElementById('weight').value,
+                lastDonation: document.getElementById('lastDonation').value,
+                address: document.getElementById('address').value,
+                city: cityInput.value,
+                emergencyName: document.getElementById('emergencyName').value,
+                emergencyPhone: document.getElementById('emergencyPhone').value
+            });
+            
+            // Scroll to top of success message
+            successMessage.scrollIntoView({ behavior: 'smooth' });
+        });
+        
+        // Set max date for last donation to today
+        const today = new Date().toISOString().split('T')[0];
+        document.getElementById('lastDonation').max = today;
+        
+        // Set placeholder for age input
+        document.getElementById('age').placeholder = "18-60";
+    </script>
+</body>
+</html>

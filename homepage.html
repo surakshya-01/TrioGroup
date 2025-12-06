@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LifeBlood Connect - Blood Donation System</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+</head>
+
+<body>
+    <!-- NAVIGATION BAR -->
+    <nav class="navbar">
+        <div class="logo">
+            <i class="fas fa-tint"></i>
+            <span>LifeBlood Connect</span>
+        </div>
+        
+        <button class="mobile-menu-btn" id="mobileMenuBtn">
+            <i class="fas fa-bars"></i>
+        </button>
+        
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#home" class="active">Home</a></li>
+            <li><a href="regi.html">Register Donor</a></li>
+            <li><a href="donorlist.html">Donor List</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="#login" class="btn-secondary" style="padding: 8px 20px; margin-left: 10px;">Login</a></li>
+        </ul>
+    </nav>
+
+    <!-- WELCOME BANNER SECTION -->
+    <section class="welcome-banner" id="home">
+        <div class="banner-content">
+            <h1>Welcome to Blood Donation System</h1>
+            <p>Your small contribution can save someone's life. Join our community of lifesavers and make a difference today. Every drop counts in the journey of saving lives.</p>
+            <button class="enter-btn" id="enterWebsite">
+                <i class="fas fa-arrow-right"></i> Enter Website
+            </button>
+        </div>
+        <div class="scroll-indicator">
+            Scroll to explore
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </section>
+
+    <!-- STATS SECTION -->
+    <section class="stats">
+        <div class="stat-item">
+            <div class="stat-number" id="donorCount">15,248</div>
+            <div class="stat-text">Registered Donors Across Nepal</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number" id="livesSaved">42,736</div>
+            <div class="stat-text">Lives Saved Through Donations</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number" id="bloodDrives">127</div>
+            <div class="stat-text">Blood Drives Organized This Month</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number" id="emergencySupport">24/7</div>
+            <div class="stat-text">Emergency Support Available</div>
+        </div>
+    </section>
+
+    <!-- FEATURES SECTION -->
+    <section class="features">
+        <h2 class="section-title">How It Works</h2>
+        <p class="section-subtitle">Our platform makes it simple to donate blood or find donors in emergencies. Join thousands of lifesavers who are making a difference every day.</p>
+        
+        <div class="card-container">
+            <div class="card">
+                <div class="card-icon">
+                    <i class="fas fa-user-edit"></i>
+                </div>
+                <h3>Easy Registration</h3>
+                <p>Donors can quickly register by filling out basic information such as name, age, blood group, and phone number. The process takes less than 5 minutes.</p>
+                <a href="register.html" class="btn btn-primary" style="padding: 12px 25px; font-size: 1rem;">Register Now</a>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">
+                    <i class="fas fa-database"></i>
+                </div>
+                <h3>Donor Database</h3>
+                <p>All donor information is stored in one secure place, making it easier for hospitals and users to find the right donor based on blood type and location.</p>
+                <a href="#donorlist" class="btn btn-primary" style="padding: 12px 25px; font-size: 1rem;">View Database</a>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">
+                    <i class="fas fa-search"></i>
+                </div>
+                <h3>Fast Search</h3>
+                <p>Receivers can easily view the list of registered donors and contact them in emergencies. Our search filters help find the nearest compatible donor.</p>
+                <a href="#donorlist" class="btn btn-primary" style="padding: 12px 25px; font-size: 1rem;">Search Donors</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- DONOR LIST PREVIEW -->
+    <section class="donor-preview" id="donorlist">
+        <h2 class="section-title">Our Recent Donors</h2>
+        <p class="section-subtitle">These heroes recently donated blood and saved lives. Join them in making a difference.</p>
+        
+        <div class="donor-grid">
+            <div class="donor-card">
+                <img src="hari image 1.jpeg" alt="Donor" class="donor-img">
+                <div class="donor-info">
+                    <h4 class="donor-name">Michael Chen</h4>
+                    <div class="donor-blood-group">O+</div>
+                    <p class="donor-location"><i class="fas fa-map-marker-alt"></i> Kathmandu, Nepal</p>
+                    <p class="donor-last-donation"><i class="fas fa-calendar"></i> Last donated: 2 weeks ago</p>
+                </div>
+            </div>
+            
+            <div class="donor-card">
+                <img src="hari image 2.jpeg" alt="Donor" class="donor-img">
+                <div class="donor-info">
+                    <h4 class="donor-name">Sarah Johnson</h4>
+                    <div class="donor-blood-group">A-</div>
+                    <p class="donor-location"><i class="fas fa-map-marker-alt"></i> Pokhara, Nepal</p>
+                    <p class="donor-last-donation"><i class="fas fa-calendar"></i> Last donated: 1 month ago</p>
+                </div>
+            </div>
+            
+            <div class="donor-card">
+                <img src="sita image 2.jpeg" alt="Donor" class="donor-img">
+                <div class="donor-info">
+                    <h4 class="donor-name">sita  sharma</h4>
+                    <div class="donor-blood-group">B+</div>
+                    <p class="donor-location"><i class="fas fa-map-marker-alt"></i> Lalitpur, Nepal</p>
+                    <p class="donor-last-donation"><i class="fas fa-calendar"></i> Last donated: 3 weeks ago</p>
+                </div>
+            </div>
+            
+            <div class="donor-card">
+                <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Donor" class="donor-img">
+                <div class="donor-info">
+                    <h4 class="donor-name">Priya Sharma</h4>
+                    <div class="donor-blood-group">AB-</div>
+                    <p class="donor-location"><i class="fas fa-map-marker-alt"></i> Bhaktapur, Nepal</p>
+                    <p class="donor-last-donation"><i class="fas fa-calendar"></i> Last donated: 2 months ago</p>
+                </div>
+            </div>
+        </div>
+        
+        <div style="text-align: center; margin-top: 50px;">
+            <a href="donorlist.html" class="btn btn-primary"><i class="fas fa-list"></i> View All Donors</a>
+        </div>
+    </section>
+
+    <!-- CONTACT PREVIEW -->
+    <section class="contact-preview" id="contact">
+        <h2 class="section-title">Contact Us</h2>
+        <p class="section-subtitle">Have questions or need assistance? Get in touch with our team. We're here to help 24/7.</p>
+        
+        <div class="contact-container">
+            <div class="contact-info">
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <div class="contact-details">
+                        <h4>Our Location</h4>
+                        <p>123 Medical Plaza, Suite 500<br>Kathmandu 44600, Nepal</p>
+                    </div>
+                </div>
+                
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-phone"></i>
+                    </div>
+                    <div class="contact-details">
+                        <h4>Phone Number</h4>
+                        <p>Emergency: 1-800-BLOOD-NOW (256-6366)<br>Office: (01) 555-7890</p>
+                    </div>
+                </div>
+                
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div class="contact-details">
+                        <h4>Email Address</h4>
+                        <p>info@lifebloodconnect.org<br>support@lifebloodconnect.org</p>
+                    </div>
+                </div>
+                
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="contact-details">
+                        <h4>Working Hours</h4>
+                        <p>Monday - Friday: 8:00 AM - 8:00 PM<br>Saturday - Sunday: 9:00 AM - 6:00 PM<br>Emergency: 24/7 Available</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="contact-form">
+                <h3 style="color: var(--dark-red); margin-bottom: 25px; font-size: 1.8rem;">Send us a Message</h3>
+                <form id="contactForm">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" class="form-control" placeholder="Your Email" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Subject">
+                    </div>
+                    <div class="form-group">
+                        <textarea class="form-control" placeholder="Your Message" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%; padding: 18px;">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>LifeBlood Connect</h3>
+                <p>A platform dedicated to connecting blood donors with recipients, saving lives one donation at a time. Together we can make Nepal a safer place for everyone.</p>
+                <div class="social-icons">
+                    <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="register.html">Register as Donor</a></li>
+                    <li><a href="donor.html">Find a Donor</a></li>
+                    <li><a href="#contact">Contact Us</a></li>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Blood Donation FAQs</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Blood Resources</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Blood Types & Compatibility</a></li>
+                    <li><a href="#">Eligibility Criteria</a></li>
+                    <li><a href="#">Donation Process</a></li>
+                    <li><a href="#">Health Benefits</a></li>
+                    <li><a href="#">Blog & News</a></li>
+                    <li><a href="#">Upcoming Blood Drives</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Emergency Contacts</h3>
+                <ul class="footer-links">
+                    <li><strong>Emergency:</strong> 1-800-BLOOD-NOW</li>
+                    <li><strong>Kathmandu:</strong> (01) 555-7890</li>
+                    <li><strong>Pokhara:</strong> (061) 555-1234</li>
+                    <li><strong>Lalitpur:</strong> (01) 555-5678</li>
+                    <li><strong>Email:</strong> emergency@lifeblood.org</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            <p>&copy; 2025 LifeBlood Connect. All rights reserved. | Designed with <span class="heart"><i class="fas fa-heart"></i></span> to save lives | Made in Nepal</p>
+        </div>
+    </footer> 
+</body>
+</html>
